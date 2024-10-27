@@ -62,8 +62,11 @@ The following mapping shows how entities from the ER diagram are converted into 
 Refer to the complete mapping document 'Mapping to Relations' for additional relations and functional dependencies.
 
 
-## How to Use This System
-1. **Set Up the Environment on Omega**:
+## # How to Use This System
+
+## Setup and Usage Instructions
+
+### 1. **Set Up the Environment on Omega**
    - Log into the Omega system provided by the university and navigate to your workspace.
    - Start `sqlplus` using your username and password:
      ```bash
@@ -71,35 +74,7 @@ Refer to the complete mapping document 'Mapping to Relations' for additional rel
      ```
    - This will allow you to run SQL commands directly or execute Java programs that connect to the database.
 
-2. **Prepare the `OracleJDBCTeam2.java` File**:
-   - Create a new Java file on Omega using the command:
-     ```bash
-     nano OracleJDBCTeam2.java
-     ```
-   - In this file, include your SQL queries and set up the database connection string with the correct `sqlplus` credentials.
-   - Although the command-line interface isn’t ideal for database operations, it provides a straightforward way to execute embedded SQL queries and stored procedures for this project.
-
-3. **Compile the Java Program**:
-   - Compile the Java program on Omega to connect with the Oracle database:
-     ```bash
-     javac OracleJDBCTeam2.java
-     ```
-
-4. **Execute the Program**:
-   - Run the compiled Java program to execute your SQL queries and view the results:
-     ```bash
-     java OracleJDBCTeam2
-     ```
-
-5. **Check Output and Reports**:
-   - After running the Java program, it will execute SQL queries and display the output in the terminal or command-line window.
-   - The output will include data on various restaurant operations, such as employee roles, inventory levels, orders, and feedback.
-   - Review the displayed results to assess business goals, such as tracking inventory usage or analyzing customer feedback for quality improvements.
-
-## Setup and Usage Instructions
-
-1. **Prepare the Database**:
-   - Connect to the SQL database system (e.g., Oracle) using a tool like `sqlplus`.
+### 2. **Prepare the Database**
    - Use SQL files to create and set up the database structure:
      - **`projectDBcreate.sql`**: Contains `CREATE TABLE` statements to define tables for entities like `Employee`, `Customer`, `Inventory`, and `Order`.
      - **`projectDBdrop.sql`**: Use this file if you need to reset by dropping existing tables. Be cautious, as this will permanently delete tables and their data.
@@ -114,35 +89,31 @@ Refer to the complete mapping document 'Mapping to Relations' for additional rel
      ```bash
      sqlplus username/password @projectDBcreate.sql
      ```
+   - These commands will execute all SQL statements within each file to set up and initialize your database.
 
-   This command will execute all SQL commands within the specified file.
+### 3. **Data Population and Analysis**
+   - **Populate the Database**: 
+     - Use the `projectDBinsert.sql` file to insert predefined data into each table. This file will automate data insertion:
+       ```bash
+       sqlplus username/password @projectDBinsert.sql
+       ```
+   - **Run Queries for Analysis**:
+     - For analysis, run the `projectDBqueries.sql` file containing common queries for reports, such as listing employees by department or checking inventory levels:
+       ```bash
+       sqlplus username/password @projectDBqueries.sql
+       ```
 
-2. **Upload Data**:
-   - Populate the database with initial data by running the `projectDBinsert.sql` file:
-     ```bash
-     sqlplus username/password @projectDBinsert.sql
-     ```
-   - This file will automatically insert predefined data into each table, so you don’t have to manually enter data row by row.
-
-3. **Running SQL Queries for Analysis**:
-   - To query the data for analysis, you can use a dedicated SQL file (e.g., `projectDBqueries.sql`) containing predefined `SELECT` statements for common reports.
-   - Run the queries using:
-     ```bash
-     sqlplus username/password @projectDBqueries.sql
-     ```
-   - This will output data from the database based on your queries, such as listing employees by department, checking current inventory levels, or viewing customer orders.
-
-4. **Accessing the Restaurant Management System**:
-   - After setting up the database, use the `OracleJDBCTeam2.java` file to interact with the restaurant management system.
-   - Compile the Java program:
+### 4. **Accessing the Restaurant Management System**
+   - After setting up the database, you can interact with the restaurant management system through the `OracleJDBCTeam2.java` file.
+   - **Compile the Java Program**:
      ```bash
      javac OracleJDBCTeam2.java
      ```
-   - Run the program to access the system:
-     ```bash
-     java OracleJDBCTeam2
-     ```
-   - The program will prompt you to choose options for different functionalities such as placing an order, viewing the menu, or accessing customer and inventory statistics.
+   - **Run the Program**:
+     - Execute the program to access various functionalities such as placing an order, viewing the menu, or accessing customer and inventory statistics:
+       ```bash
+       java OracleJDBCTeam2
+       ```
 
 ### Sample Outputs
 Here are some examples of the output you can expect from the command-line interface:
@@ -157,7 +128,6 @@ Here are some examples of the output you can expect from the command-line interf
    ![Restaurant Menu](/Screenshots/select_query.jpg)
 
 Each SQL file is organized to streamline setup, data entry, and querying, making it easy to run complex queries without manually typing each command.
-
 
 ## Technical Requirements
 - **Database**: SQL-based database, specifically **Oracle**, for structured data handling.

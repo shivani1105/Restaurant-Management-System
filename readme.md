@@ -62,7 +62,7 @@ The following mapping shows how entities from the ER diagram are converted into 
 Refer to the complete mapping document 'Mapping to Relations' for additional relations and functional dependencies.
 
 
-## # How to Use This System
+## How to Use This System
 
 ## Setup and Usage Instructions
 

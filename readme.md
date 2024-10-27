@@ -3,7 +3,7 @@
 ## Project Learning and Objectives
 This project was part of my coursework on Database Management Systems (DBMS), where I gained hands-on experience in building a database application with a user-focused approach. Through this project, I developed a deeper understanding of:
 
-- **Requirement Analysis**: Identifying the needs of restaurant operations to design an efficient database structure.
+- **Requirement Analysis**: Identifying the needs of user or organizational needs to design an efficient database structure.
 - **Relational Model Design**: Structuring the database using relationships between entities like employees, customers, orders, and inventory.
 - **SQL and Database Management**: Writing and optimizing SQL queries for data manipulation and retrieval.
 - **Application Development**: Creating a command-line interface to interact with the database and manage daily operations.
@@ -37,6 +37,31 @@ Managing a restaurant requires precision in coordinating staff, managing invento
 - **Order**: Tracks customer orders, including the menu item details and preparation time.
 - **Feedback**: Gathers customer feedback for each order, including suggestions and complaints.
 
+## ER Diagram
+The Entity-Relationship (ER) diagram below represents the structure of the Restaurant Management System, showing relationships among key entities such as Employees, Customers, Orders, Inventory, and Feedback.
+
+![ER Diagram](https://github.com/shivani1105/Restaurant-Management-System/blob/main/ER%20diagram.jpg)
+
+## ER-to-Relational Mapping
+The following mapping shows how entities from the ER diagram are converted into relational tables after normalization:
+
+- **Primary Keys** are underlined with solid lines.
+- **Partial Keys** are underlined with dashed lines, and **Foreign Keys** are indicated in blue.
+
+### Key Relations and Attributes:
+- **EMPLOYEE (EID, F_Name, M_Name, L_Name, Gender, DOB, Salary, Phone#, Sup_ID, IMgrID)**
+- **CUSTOMER (CID, Email, Phone#, Age, F_Name, L_Name, Gender)**
+- **ORDER (ID, Order_Category, Type, Price, Order_Taken_Time, Order_Served_Time, CID, EID, Item_ID_Used)**
+- **INVENTORY (Item_ID, Item_Name, Mfd_Date, Expiry_Date, Date_Purchased, Qty_Purchased, Item_Price, Qty_left_for_day)**
+- **DEPARTMENT (Dept_ID, Dept_Name, MgrID, Start_Date)**
+- **SUPPLIER (ID, Name)**
+- **DAILY_SCHEDULE (Schedule_ID, EID, Start_Time, End_Time, Task)**
+- **FEEDBACK (Order_ID, CID, Suggestion, Complaint, Rating_for_10)**
+- **SUPPLIES (SID, Item_ID)**
+
+Refer to the complete mapping document 'Mapping to Relations' for additional relations and functional dependencies.
+
+
 ## How to Use This System
 1. **Set Up the Environment on Omega**:
    - Log into the Omega system provided by the university and navigate to your workspace.
@@ -67,18 +92,72 @@ Managing a restaurant requires precision in coordinating staff, managing invento
      ```
 
 5. **Check Output and Reports**:
-   - The program will fetch and display data on employee roles, inventory levels, orders, feedback, and other restaurant operations. Analyze the results to track business goals like increased sales and reduced food wastage.
+   - After running the Java program, it will execute SQL queries and display the output in the terminal or command-line window.
+   - The output will include data on various restaurant operations, such as employee roles, inventory levels, orders, and feedback.
+   - Review the displayed results to assess business goals, such as tracking inventory usage or analyzing customer feedback for quality improvements.
 
 ## Setup and Usage Instructions
-1. **Prepare Database**:
-   - Ensure your database configuration is compatible with an SQL system like Oracle.
-   - You may use commands such as `CREATE TABLE`, `INSERT`, `DROP`, and `SELECT` within SQL scripts to manage data tables.
+
+1. **Prepare the Database**:
+   - Connect to the SQL database system (e.g., Oracle) using a tool like `sqlplus`.
+   - Use SQL files to create and set up the database structure:
+     - **`projectDBcreate.sql`**: Contains `CREATE TABLE` statements to define tables for entities like `Employee`, `Customer`, `Inventory`, and `Order`.
+     - **`projectDBdrop.sql`**: Use this file if you need to reset by dropping existing tables. Be cautious, as this will permanently delete tables and their data.
+     - **`projectDBinsert.sql`**: Contains `INSERT INTO` statements to populate tables with initial data such as employee records, customer details, and inventory items.
+     - **`projectDBupdate.sql`**: Used to apply any updates to the data after initial setup.
+
+   - Run each SQL file on Omega using the following command:
+     ```bash
+     sqlplus username/password @path/to/your_sql_file.sql
+     ```
+   - For example, to create tables:
+     ```bash
+     sqlplus username/password @projectDBcreate.sql
+     ```
+
+   This command will execute all SQL commands within the specified file.
 
 2. **Upload Data**:
-   - Populate the database with initial data for entities such as employees, inventory items, customers, and suppliers. Use SQL files or manual entries as needed.
+   - Populate the database with initial data by running the `projectDBinsert.sql` file:
+     ```bash
+     sqlplus username/password @projectDBinsert.sql
+     ```
+   - This file will automatically insert predefined data into each table, so you don’t have to manually enter data row by row.
 
-3. **Run Application**:
-   - After data is set up, execute the main script (`OracleJDBCTeam2.java`) through the command-line to interact with the database.
+3. **Running SQL Queries for Analysis**:
+   - To query the data for analysis, you can use a dedicated SQL file (e.g., `projectDBqueries.sql`) containing predefined `SELECT` statements for common reports.
+   - Run the queries using:
+     ```bash
+     sqlplus username/password @projectDBqueries.sql
+     ```
+   - This will output data from the database based on your queries, such as listing employees by department, checking current inventory levels, or viewing customer orders.
+
+4. **Accessing the Restaurant Management System**:
+   - After setting up the database, use the `OracleJDBCTeam2.java` file to interact with the restaurant management system.
+   - Compile the Java program:
+     ```bash
+     javac OracleJDBCTeam2.java
+     ```
+   - Run the program to access the system:
+     ```bash
+     java OracleJDBCTeam2
+     ```
+   - The program will prompt you to choose options for different functionalities such as placing an order, viewing the menu, or accessing customer and inventory statistics.
+
+### Sample Outputs
+Here are some examples of the output you can expect from the command-line interface:
+
+1. **Displaying Most Frequently Used Inventory Items**:
+   ![Most Frequently Used Inventory Items](/Screenshots/fetch_customers.jpg)
+
+2. **Customer Information Based on Specific Criteria**:
+   ![Customer IDs and Emails of Frequent Customers](/Screenshots/groupby_query.jpg)
+
+3. **Viewing the Restaurant Menu**:
+   ![Restaurant Menu](/Screenshots/select_query.jpg)
+
+Each SQL file is organized to streamline setup, data entry, and querying, making it easy to run complex queries without manually typing each command.
+
 
 ## Technical Requirements
 - **Database**: SQL-based database, specifically **Oracle**, for structured data handling.

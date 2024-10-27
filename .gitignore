@@ -1,0 +1,9 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/Restaurant-Management-System/FileContentIndex
+/.vs/Restaurant-Management-System/v17/.wsuo
+/.vs/Restaurant-Management-System/v17/DocumentLayout.json
+/.vs/slnx.sqlite
+/.vs/VSWorkspaceState.json
